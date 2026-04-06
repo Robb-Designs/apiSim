@@ -1,9 +1,18 @@
-
+// Types --------------------------------------------------------------------------------------------------
 type Review = {
   rating: number;
   comment: string;
 };
 
+type SalesReport = {
+  totalSales: number;
+  unitsSold: number;
+  averagePrice: number;
+};
+
+
+
+// Functions ----------------------------------------------------------------------------------------------
 export const fetchProductCatalog = (): Promise<
     {
         id: number;
@@ -39,4 +48,20 @@ export const fetchProductReviews = (productId: number): Promise<Review[]> => {
     }, 1500);
   });
 };
+
+export const fetchSalesReport = (): Promise<SalesReport> => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if(Math.random() < 0.8) {
+                resolve({
+                    totalSales: 33000,
+                    unitsSold: 155,
+                    averagePrice: 299
+                });
+            } else {
+                reject("Failed to fetch the sales repor");
+            }
+        }, 2000)
+    })
+}
 
